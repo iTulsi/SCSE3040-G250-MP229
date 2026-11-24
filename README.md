@@ -8,10 +8,10 @@
 
 | Enrolment number | Member |
 | --- | --- |
+| S24CSEU0084 | Tulsi Sanskrati Tomar |
 | S24CSEU1977 | Abhay Verma Raj |
 | S24CSEU1536 | Harshiv Batra |
 | S24CSEU2429 | Satyajeet |
-| S24CSEU0084 | Tulsi Sanskrati Tomar |
 | S24CSEU1988 | Harsh Khandelwal |
 
 ## Goal
