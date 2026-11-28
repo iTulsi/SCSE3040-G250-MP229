@@ -5,7 +5,7 @@ from fastapi import FastAPI, HTTPException
 import pandas as pd
 from pydantic import BaseModel, Field
 
-MODEL_PATH = Path("models/champion_model.joblib")
+MODEL_PATH = Path("models/model.joblib")
 
 app = FastAPI(title="Guwahati Speed Parcel Hub API", version="1.0.0")
 _model = None
