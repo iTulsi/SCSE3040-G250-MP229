@@ -1,0 +1,53 @@
+group_id: G250
+problem_id: MP229
+data_issues:
+  leaking_column:
+    present: true
+    column: days_from_tracking_page
+  unit_mixup:
+    present: true
+    column: weight_kg
+    group_value: Rural
+    factor: 1000
+  sentinel_value:
+    present: true
+    column: transfers
+    value: 9999
+    count: 44
+  duplicate_rows:
+    present: true
+    count: 38
+  stuck_sensor:
+    present: false
+    column: null
+    start_date: null
+    end_date: null
+  target_typos:
+    present: true
+    count: 11
+  spelling_variants:
+    present: false
+    column: null
+    true_levels: null
+tracking:
+  experiment_name: mp229-parcel-delivery
+  best_run_id: 71f04cc6467a4af5bfe3526640c4b001
+  registered_model_name: mp229-delivery-days
+  champion_version: '2'
+monitoring:
+  psi:
+    distance_km: 6.8034
+    weight_kg: 0.0593
+    hub_backlog: 0.0337
+    pin_code_tier: 0.0009
+    declared_value_rs: 0.0181
+    transfers: 0.0045
+  most_drifted_feature: distance_km
+  mae_by_group:
+    Metro: 3.6221
+    Tier-2: 1.2768
+    Rural: 1.0968
+  worst_served_group: Metro
+  mae_v1_on_check: 2.0194
+  mae_v2_on_check: 0.6989
+  decision: promote
