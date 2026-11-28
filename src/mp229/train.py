@@ -4,6 +4,7 @@ from pathlib import Path
 import mlflow
 import mlflow.sklearn
 import pandas as pd
+import yaml
 from joblib import dump
 from mlflow.tracking import MlflowClient
 from sklearn.base import clone
@@ -28,6 +29,8 @@ FEATURES = NUMERIC + CATEGORICAL
 
 
 def main() -> None:
+    with Path("params.yaml").open() as config_file:
+        params = yaml.safe_load(config_file)
     mlflow.set_tracking_uri("sqlite:///mlflow.db")
     mlflow.set_experiment("MP229 Parcel Delivery")
 
@@ -51,9 +54,7 @@ def main() -> None:
     ])
     model = Pipeline([
         ("preprocessor", preprocessor),
-        ("regressor", RandomForestRegressor(
-            n_estimators=100, min_samples_leaf=2, random_state=42
-        )),
+        ("regressor", RandomForestRegressor(**params["model"])),
     ])
     settings = [
         {"n_estimators": 50, "min_samples_leaf": 1},

@@ -1,0 +1,4 @@
+model:
+  n_estimators: 100
+  min_samples_leaf: 2
+  random_state: 42
