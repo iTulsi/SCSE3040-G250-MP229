@@ -9,13 +9,23 @@ def columns_missing_at_prediction(
 
     return sorted(train_columns - holdout_columns - {target})
 
-
-def clean_records(df: pd.DataFrame) -> pd.DataFrame:
-    """Remove exact copies; reject IDs that still have conflicting records."""
+def clean_records(df: pd.DataFrame, *, training_data: bool = False) -> pd.DataFrame:
+    """Remove duplicates and correct known issues in the training data."""
     cleaned = df.drop_duplicates().copy()
 
     if cleaned["record_id"].duplicated().any():
         raise ValueError("Conflicting rows share a record_id")
+
+    if training_data:
+        rural = cleaned["destination"] == "Rural"
+        cleaned.loc[rural, "weight_kg"] = cleaned.loc[rural, "weight_kg"] / 1000
+
+        cleaned["transfers"] = cleaned["transfers"].replace(9999, float("nan"))
+
+        target_typo = cleaned["delivery_days"] > 10
+        cleaned.loc[target_typo, "delivery_days"] = (
+            cleaned.loc[target_typo, "delivery_days"] / 10
+        )
 
     return cleaned
 
